@@ -1,0 +1,26 @@
+body{
+  color: blue;
+}
+
+#memoryTable {
+  margin-top: 20px;
+  height: 250px;
+  width: 200px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  background-color: gray;
+}
+
+.memoryCell {
+  height: 20%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  border-width: 1px;
+  border-style: solid;
+  border-color: white;
+}

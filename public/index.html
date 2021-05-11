@@ -3,16 +3,31 @@
   <head>
     <meta charset="utf-8">
     <title>Socket Test!</title>
+    <link href="/index.css" rel="stylesheet">
   </head>
   <body>
     <h1>Global click counter: </h1>
     <h2 id="clickCounter">0</h2>
     <button type="button" id="buttonClick">Click!</button>
+    <div id="memoryTable">
+      <div class="memoryCell" id="m1"></div>
+      <div class="memoryCell" id="m2"></div>
+      <div class="memoryCell" id="m3"></div>
+      <div class="memoryCell" id="m4"></div>
+      <div class="memoryCell" id="m5"></div>
+    </div>
     <script src="/socket.io/socket.io.js"></script>
     <script>
       var socket = io()
       var button = document.getElementById('buttonClick')
       var clickCounter = document.getElementById('clickCounter')
+      var cells = document.getElementById("memoryTable").childNodes
+
+      socket.on('refresh cells', (data) => {
+        for(let i = 0; i < data.length; i++){
+          document.getElementById("m" + (i+1)).innerHTML = data[i]
+        }
+      })
 
       socket.on('add counter', (counter) => {
         clickCounter.innerHTML = counter
