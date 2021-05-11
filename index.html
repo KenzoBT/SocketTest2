@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Socket Test!</title>
+  </head>
+  <body>
+    <h1>Global click counter: </h1>
+    <h2 id="clickCounter">0</h2>
+    <button type="button" id="buttonClick">Click!</button>
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+      var socket = io()
+      var button = document.getElementById('buttonClick')
+      var clickCounter = document.getElementById('clickCounter')
+
+      socket.on('add counter', (counter) => {
+        clickCounter.innerHTML = counter
+      })
+
+      button.addEventListener('click', function(e) {
+        e.preventDefault()
+        socket.emit('add counter')
+      })
+    </script>
+  </body>
+</html>
